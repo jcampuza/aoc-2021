@@ -1,11 +1,9 @@
 package main
 
 import (
+	"aoc-2021/util"
 	"fmt"
-	"io/ioutil"
 	"path"
-	"strconv"
-	"strings"
 )
 
 func partOne(nums []int) int {
@@ -47,18 +45,7 @@ func partTwo(nums []int) int {
 }
 
 func main() {
-	inputPath := path.Join("01", "input.txt")
-	input, err := ioutil.ReadFile(inputPath)
-	if err != nil {
-		panic("File not found")
-	}
-
-	inputSplit := strings.Split(string(input), "\n")
-	nums := []int{}
-	for _, v := range inputSplit {
-		v, _ := strconv.Atoi(v)
-		nums = append(nums, v)
-	}
+	nums := util.ReadFileAsNumbers(path.Join("01", "input.txt"))
 
 	fmt.Println(partOne(nums))
 	fmt.Println(partTwo(nums))
