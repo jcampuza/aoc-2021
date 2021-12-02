@@ -45,7 +45,7 @@ func partTwo(nums []int) int {
 }
 
 func main() {
-	nums := util.ReadFileAsNumbers(path.Join("01", "input.txt"))
+	nums := util.ReadNumbers(path.Join("01", "input.txt"))
 
 	fmt.Println(partOne(nums))
 	fmt.Println(partTwo(nums))
