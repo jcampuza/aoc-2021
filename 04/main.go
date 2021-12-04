@@ -7,20 +7,7 @@ import (
 )
 
 func partOne(lines []string) int {
-	len := len(lines[0])
-	
-	oxygen := copy(lines)
-	for (i := 0; i < len; i++) {
-	 zeros := 0
-	 ones := 0
-
-	 for _, line := range lines {
-		 line[i] === '1' ? ones++ : zeros++
-	 }
-	}
-	
 	return 0
-
 }
 
 func partTwo(lines []string) int {
