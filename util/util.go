@@ -35,3 +35,9 @@ func ReadNumbers(inputPath string) []int {
 	inputSplit := strings.Split(string(input), "\n")
 	return StrListToInt(inputSplit)
 }
+
+func CheckErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
