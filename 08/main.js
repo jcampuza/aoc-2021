@@ -38,6 +38,22 @@ const isSubset = (s1, s2) => {
   return intermediate.size === s2.size;
 };
 
+/**
+ *
+ * @param {Set} s1
+ * @param {Set} s2
+ */
+const difference = (s1, s2) => {
+  const diff = new Set();
+  s1.forEach((v) => {
+    if (!s2.has(v)) {
+      diff.add(v);
+    }
+  });
+
+  return diff;
+};
+
 const partOne = (input = '') => {
   const lines = input.split('\n').map((line) => {
     const [left, right] = line.split(' | ');
@@ -94,28 +110,11 @@ const partTwo = (input = '') => {
       return set;
     };
 
-    const mapping = {
-      1: getSignalMapping(2),
-      4: getSignalMapping(4),
-      7: getSignalMapping(3),
-      8: getSignalMapping(7),
-    };
-
-    /**
-     *
-     * @param {Set} s1
-     * @param {Set} s2
-     */
-    const difference = (s1, s2) => {
-      const diff = new Set();
-      s1.forEach((v) => {
-        if (!s2.has(v)) {
-          diff.add(v);
-        }
-      });
-
-      return diff;
-    };
+    const mapping = {};
+    mapping[1] = getSignalMapping(2);
+    mapping[4] = getSignalMapping(4);
+    mapping[7] = getSignalMapping(3);
+    mapping[8] = getSignalMapping(7);
 
     // digits with 6 signals, 9 has a 4 in it while others done
     mapping[9] = getSignalMapping(6, (signal) => isSubset(new Set(signal), mapping[4]));
