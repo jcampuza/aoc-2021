@@ -72,19 +72,18 @@ const partOne = (input = '') => {
   }, 0);
 };
 
-const segmentCounts = {
-  9: 6,
-  0: 6,
-  6: 6,
-  8: 7,
-  3: 5,
-  5: 5,
-  2: 5,
-  4: 4,
-  7: 3,
-  1: 2,
-};
-// Uniques: 1 = 2 segments, 4: 4 segments, 7: 3 segments, 8: 7 segments
+// Segment counts
+//   9: 6,
+//   0: 6,
+//   6: 6,
+//   8: 7,
+//   3: 5,
+//   5: 5,
+//   2: 5,
+//   4: 4,
+//   7: 3,
+//   1: 2,
+//
 
 const partTwo = (input = '') => {
   const lines = input.split('\n').map((line) => {
