@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const readInput = (file = '') => {
-  return fs.readFileSync(file, 'utf8');
+  return fs.readFileSync(file, 'utf-8');
 };
 
 const isLowPoint = (matrix, y, x) => {
