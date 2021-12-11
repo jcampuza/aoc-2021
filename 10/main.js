@@ -19,8 +19,6 @@ const closingCharPoints = {
   '>': 25137,
 };
 
-// A corrupted line is one where a chunk closes with the wrong character
-
 const partOne = (input = '') => {
   let lines = input.split('\n').map((line) => line.split(''));
   let score = 0;
@@ -43,7 +41,6 @@ const partOne = (input = '') => {
   return score;
 };
 
-// Find largest basin
 const partTwo = (input = '') => {
   let lines = input.split('\n').map((line) => line.split(''));
 
