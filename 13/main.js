@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { pipe, tap, take } = require('../util/util');
 
 const readInput = (file = '') => {
   return fs.readFileSync(file, 'utf-8');
@@ -62,22 +63,24 @@ const parseFoldsAndPlot = (input) => {
   return { plot, folds };
 };
 
-const partOne = (input = '') => {
-  let { plot, folds } = parseFoldsAndPlot(input);
-  plot = foldPlot(plot, folds[0]);
+const applyFolds = ({ plot, folds }) => folds.reduce((acc, fold) => foldPlot(acc, fold), plot);
 
+const takeFirstFold = (folds) => take(folds, 1);
+
+const getPlotAndFirstFold = ({ plot, folds }) => ({ plot, folds: takeFirstFold(folds) });
+
+/**
+ * Count
+ */
+const countHashesInPlot = (plot) => {
   let count = 0;
   iterateMatrix(plot, (point) => point.value === '#' && count++);
-
   return count;
 };
 
-const partTwo = (input = '') => {
-  const { plot, folds } = parseFoldsAndPlot(input);
-  const result = folds.reduce((acc, fold) => foldPlot(acc, fold), plot);
+const partOne = pipe(parseFoldsAndPlot, getPlotAndFirstFold, applyFolds, countHashesInPlot);
 
-  logPlot(result);
-};
+const partTwo = pipe(parseFoldsAndPlot, applyFolds, tap(logPlot), () => 'Look up and read');
 
 const t = readInput(path.join(__dirname, 'test.txt'));
 console.log('------------TEST-----------');
