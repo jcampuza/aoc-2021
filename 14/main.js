@@ -42,28 +42,27 @@ const generateNextState = (state, rulesMap, counts) => {
     counts[match] = (counts[match] ?? 0) + state[key];
   }
 
-  return newState;
+  return { state: newState, rules: rulesMap, counts };
 };
 
 const partOne = (input = '') => {
-  let { state, rules, counts } = parseInput(input);
+  const res = range(10).reduce(
+    (acc) => generateNextState(acc.state, acc.rules, acc.counts),
+    parseInput(input)
+  );
 
-  for (let i of range(10)) {
-    state = generateNextState(state, rules, counts);
-  }
+  const sorted = Object.values(res.counts).sort((a, b) => b - a);
 
-  const sorted = Object.values(counts).sort((a, b) => b - a);
   return sorted[0] - sorted[sorted.length - 1];
 };
 
 const partTwo = (input = '') => {
-  let { state, rules, counts } = parseInput(input);
+  const res = range(40).reduce(
+    (acc) => generateNextState(acc.state, acc.rules, acc.counts),
+    parseInput(input)
+  );
 
-  for (let i of range(40)) {
-    state = generateNextState(state, rules, counts);
-  }
-
-  const sorted = Object.values(counts).sort((a, b) => b - a);
+  const sorted = Object.values(res.counts).sort((a, b) => b - a);
 
   return sorted[0] - sorted[sorted.length - 1];
 };
