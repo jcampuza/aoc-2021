@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { range } = require('../util/util');
+const { range, pipe } = require('../util/util');
 
 const readInput = (file = '') => {
   return fs.readFileSync(file, 'utf-8');
