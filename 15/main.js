@@ -124,17 +124,6 @@ const parseInput = (m) => {
   return { graph, start, end };
 };
 
-const manhattanDistanceHeuristic = (y1, x1, y2, x2) => {
-  return y2 - y1 + (x2 - x1);
-};
-
-const manhattanDistanceFromCoord = (coord1, coord2) => {
-  const [y1, x1] = coord1.split(',').map(Number);
-  const [y2, x2] = coord2.split(',').map(Number);
-
-  return manhattanDistanceHeuristic(y1, x1, y2, x2);
-};
-
 /**
  *
  * @param {Graph} graph
@@ -164,7 +153,7 @@ const shortestPath = (graph, start, end) => {
       if (distance < realDistances[adjacentNode.node]) {
         realDistances[adjacentNode.node] = distance;
         visited[adjacentNode.node] = pqItem.item;
-        pq.add(adjacentNode.node, distance + manhattanDistanceFromCoord(adjacentNode.node, end));
+        pq.add(adjacentNode.node, distance);
       }
     }
 
